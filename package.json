@@ -1,0 +1,26 @@
+{
+  "name": "firefighters",
+  "version": "1.0.0",
+  "description": "Vanilla javascript project. npm, vite, apis, forms",
+  "main": "src/tsc/main.ts",
+  "scripts": {
+    "dev": "vite",
+    "prod": "tsc && vite build",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@rollup/plugin-image": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.51.0",
+    "javascript-obfuscator": "^4.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.5.0"
+  }
+}
