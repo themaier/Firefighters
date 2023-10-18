@@ -3,14 +3,14 @@ function navigate(path: string): void {
     let content: string = "";
   
     switch (path) {
-      case "/":
-        content = "<h1>Home Page</h1>";
+      case "/live":
+        content = "<h1>Live</h1>";
         break;
-      case "/about":
-        content = "<h1>About Page</h1>";
+      case "/plan":
+        content = "<h1>Plan</h1>";
         break;
-      case "/contact":
-        content = "<h1>Contact Page</h1>";
+      case "/login":
+        content = "<h1>Login</h1>";
         break;
       default:
         content = "<h1>404 Not Found</h1>";
