@@ -1,40 +1,56 @@
-// Function to load content based on route
-function navigate(path: string): void {
-    let content: string = "";
-  
-    switch (path) {
-      case "/live":
-        content = "<h1>Live</h1>";
-        break;
-      case "/plan":
-        content = "<h1>Plan</h1>";
-        break;
-      case "/login":
-        content = "<h1>Login</h1>";
-        break;
-      default:
-        content = "<h1>404 Not Found</h1>";
+const apiKey = import.meta.env.VITE_GMAP_API_KEY;
+
+document.addEventListener("DOMContentLoaded", function () {
+    const liveLink = document.getElementById("liveLink");
+    const planLink = document.getElementById("planLink");
+    const loginLink = document.getElementById("loginLink");
+    const pageTitle = document.getElementById("pageTitle");
+    const contentDiv = document.getElementById("content");
+
+    if (liveLink && planLink && loginLink && pageTitle && contentDiv) {
+        liveLink.addEventListener("click", function () {
+        loadPage("Live", pageTitle, contentDiv);
+        });
+
+        planLink.addEventListener("click", function () {
+        loadPage("Plan", pageTitle, contentDiv);
+        });
+
+        loginLink.addEventListener("click", function () {
+        loadPage("Login", pageTitle, contentDiv);
+        });
     }
+});
+function loadPage(pageName: string, pageTitle: HTMLElement, contentDiv: HTMLElement) {
+    // Update the page title
+    pageTitle.textContent = pageName;
   
-    document.getElementById("app")!.innerHTML = content;
+    // Clear previous content
+    contentDiv.innerHTML = "";
+  
+    if (pageName === "Live" || pageName === "Plan") {
+      // Load the Google Maps API script only for Live and Plan pages
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+      document.body.appendChild(script);
+  
+      // Create a div for the map
+      const mapDiv = document.createElement("div");
+      mapDiv.id = "map";
+      contentDiv.appendChild(mapDiv);
+  
+      // Function to initialize the Google Map
+      window.initMap = function () {
+        const options = {
+          zoom: 11,
+          center: { lat: 48.411328, lng: 12.947491 } // New York coordinates
+        };
+        const map = new google.maps.Map(document.getElementById("map")!, options);
+      };
+    }
+    else if (pageName === "Login") {
+      // Show the login form or whatever you want for the Login page
+      contentDiv.innerHTML = "<p>Login form goes here.</p>";
+    }
   }
-  
-  // Initial navigation
-  navigate(window.location.pathname);
-  
-  // Click event listener for links
-  document.addEventListener("click", (e: MouseEvent) => {
-    const target = e.target as HTMLElement;
-  
-    if (target.matches("[data-link]")) {
-      e.preventDefault();
-      const href = (target as HTMLAnchorElement).href;
-      history.pushState(null, "", href);
-      navigate(window.location.pathname);
-    }
-  });
-  
-  // Listen to back/forward navigation
-  window.addEventListener("popstate", () => {
-    navigate(window.location.pathname);
-  });

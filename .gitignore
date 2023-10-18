@@ -5,6 +5,7 @@ bootstrap.json
 bootstrap.jsonp
 build/
 dist/
+.env
 node_modules/
 classic.json
 classic.jsonp

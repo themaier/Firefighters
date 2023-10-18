@@ -2,18 +2,40 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/water-icon.svg" />
+    <link rel="icon" type="image/svg+xml" href="src/assets/water-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pumpen</title>
+    <style>
+      #map {
+        height: 400px;
+        width: 100%;
+      }
+    </style>
   </head>
   <body>
-    <h1>Hallo</h1>
+    <header>
+      <nav>
+        <a href="#" id="liveLink">Live</a>
+        <a href="#" id="planLink">Plan</a>
+        <a href="#" id="loginLink">Login</a>
+      </nav>
+    </header>
+    
+    
+    <h1 id="pageTitle">Hallo</h1>
+    <div id="content">
+      <!-- Content will be loaded here -->
+    </div>
+    
     <div id="app">App</div>
-    <nav>
-      <a href="/live" data-link>Live</a>
-      <a href="/plan" data-link>Plan</a>
-      <a href="/login" data-link>Login</a>
-    </nav>
-    <script type="module" src="/src/tsc/main.ts"></script>
+    
+
+
+
+    <div id="content">
+      <!-- Content will be loaded here -->
+    </div>
+
+    <script type="module" src="src/tsc/main.ts"></script>
   </body>
 </html>
