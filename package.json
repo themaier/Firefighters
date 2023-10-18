@@ -8,12 +8,16 @@
     "prod": "tsc && vite build",
     "build": "tsc && vite build",
     "serve": "vite preview",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.51.0",
     "javascript-obfuscator": "^4.1.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.11"
