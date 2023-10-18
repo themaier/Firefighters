@@ -14,9 +14,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   const contentDiv = document.getElementById("content");
   const setPumpButton = document.getElementById("setPumpButton");
-  const livePage = document.getElementById("livePage");
-  const planPage = document.getElementById("planPage");
-  const loginPage = document.getElementById("loginPage");
+  // const livePage = document.getElementById("livePage");
+  // const planPage = document.getElementById("planPage");
+  // const loginPage = document.getElementById("loginPage");
 
   if (
     liveLink &&
