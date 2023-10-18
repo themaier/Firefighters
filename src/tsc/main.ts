@@ -86,7 +86,6 @@ function loadPage(
 
 function setMarker(lat: number, lng: number) {
   if (map) {
-    // Check if map is initialized
     const pos = {
       lat: lat,
       lng: lng,
