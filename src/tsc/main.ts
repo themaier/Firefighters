@@ -1,6 +1,6 @@
 declare var google: any;
 let map: google.maps.Map | null = null;
-const apiKey = import.meta.env.VITE_GMAP_API_KEY;
+const apiKey = (import.meta as any).env.VITE_GMAP_API_KEY;
 
 document.addEventListener("DOMContentLoaded", function () {
   // if (window.location.pathname !== "/about") {
@@ -11,17 +11,20 @@ document.addEventListener("DOMContentLoaded", function () {
   const planLink = document.getElementById("planLink");
   const loginLink = document.getElementById("loginLink");
   const pageTitle = document.getElementById("pageTitle");
+
   const contentDiv = document.getElementById("content");
   const setPumpButton = document.getElementById("setPumpButton");
+  const livePage = document.getElementById("livePage");
+  const planPage = document.getElementById("planPage");
+  const loginPage = document.getElementById("loginPage");
 
   if (
     liveLink &&
     planLink &&
     loginLink &&
     pageTitle &&
-    contentDiv
-    //  &&
-    // setPumpButton
+    contentDiv &&
+    setPumpButton
   ) {
     liveLink.addEventListener("click", function () {
       loadPage("Live", pageTitle, contentDiv);
@@ -61,7 +64,7 @@ function loadPage(
     contentDiv.appendChild(mapDiv);
 
     // Function to initialize the Google Map
-    window.initMap = function () {
+    (window as any).initMap = function () {
       const options = {
         zoom: 11,
         center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
