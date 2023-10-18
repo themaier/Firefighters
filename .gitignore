@@ -4,6 +4,8 @@ bootstrap.js
 bootstrap.json
 bootstrap.jsonp
 build/
+dist/
+node_modules/
 classic.json
 classic.jsonp
 ext/

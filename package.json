@@ -1,0 +1,21 @@
+{
+  "name": "firefighters",
+  "version": "1.0.0",
+  "description": "Vanilla javascript project. npm, vite, apis, forms",
+  "main": "src/tsc/main.ts",
+  "scripts": {
+    "dev": "vite",
+    "prod": "tsc && vite build",
+    "build": "tsc && vite build",
+    "serve": "vite preview",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "javascript-obfuscator": "^4.1.0",
+    "typescript": "^5.2.2",
+    "vite": "^4.4.11"
+  }
+}
