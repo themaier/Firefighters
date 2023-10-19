@@ -7,85 +7,70 @@ document.addEventListener("DOMContentLoaded", function () {
   //   window.history.replaceState({}, "", "/about#live" + window.location.hash);
   // }
 
-  const liveLink = document.getElementById("liveLink");
-  const planLink = document.getElementById("planLink");
-  const loginLink = document.getElementById("loginLink");
-  const pageTitle = document.getElementById("pageTitle");
+  const livePage = document.getElementById("livePage") as HTMLElement;
+  const planPage = document.getElementById("planPage") as HTMLElement;
+  const loginPage = document.getElementById("loginPage") as HTMLElement;
 
-  const contentDiv = document.getElementById("content");
-  const setPumpButton = document.getElementById("setPumpButton");
-  // const livePage = document.getElementById("livePage");
-  // const planPage = document.getElementById("planPage");
-  // const loginPage = document.getElementById("loginPage");
+  const liveLink = document.getElementById("liveLink") as HTMLElement;
+  const planLink = document.getElementById("planLink") as HTMLElement;
+  const loginLink = document.getElementById("loginLink") as HTMLElement;
 
-  if (
-    liveLink &&
-    planLink &&
-    loginLink &&
-    pageTitle &&
-    contentDiv &&
-    setPumpButton
-  ) {
-    liveLink.addEventListener("click", function () {
-      loadPage("Live", pageTitle, contentDiv);
+  function hideAllPages() {
+    livePage.style.display = "none";
+    planPage.style.display = "none";
+    loginPage.style.display = "none";
+  }
+
+  // Load Live Page
+  if (liveLink) {
+    liveLink.addEventListener("click", () => {
+      hideAllPages();
+      livePage.style.display = "block";
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+      document.body.appendChild(script);
+      (window as any).initMap = function () {
+        const options = {
+          zoom: 11,
+          center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
+        };
+        map = new google.maps.Map(livePage.querySelector("#map")!, options);
+      };
     });
+  }
+  const setPumpButton = document.getElementById("setPumpButton") as HTMLElement;
+  setPumpButton.addEventListener("click", function () {
+    setMarker(48.411328, 12.947491);
+  });
 
-    planLink.addEventListener("click", function () {
-      loadPage("Plan", pageTitle, contentDiv);
+  // Load Plan Page
+  if (planLink) {
+    planLink.addEventListener("click", () => {
+      hideAllPages();
+      planPage.style.display = "block";
+      const script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+      document.body.appendChild(script);
+      (window as any).initMap = function () {
+        const options = {
+          zoom: 11,
+          center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
+        };
+        map = new google.maps.Map(planPage.querySelector("#map")!, options);
+      };
     });
+  }
 
-    loginLink.addEventListener("click", function () {
-      loadPage("Login", pageTitle, contentDiv);
-    });
-    setPumpButton.addEventListener("click", function () {
-      setMarker(48.411328, 12.947491);
+  // Load Login Page
+  if (loginLink) {
+    loginLink.addEventListener("click", () => {
+      hideAllPages();
+      loginPage.style.display = "block";
     });
   }
 });
-
-function loadPage(
-  newPageTitle: string,
-  oldPageTitle: HTMLElement,
-  contentDiv: HTMLElement
-) {
-  oldPageTitle.textContent = newPageTitle;
-  contentDiv.innerHTML = "";
-
-  if (newPageTitle === "Live" || newPageTitle === "Plan") {
-    // Load the Google Maps API script only for Live and Plan pages
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-    document.body.appendChild(script);
-
-    // Create a div for the map
-    const mapDiv = document.createElement("div");
-    mapDiv.id = "map";
-    contentDiv.appendChild(mapDiv);
-
-    // Function to initialize the Google Map
-    (window as any).initMap = function () {
-      const options = {
-        zoom: 11,
-        center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
-      };
-      map = new google.maps.Map(document.getElementById("map")!, options);
-    };
-  } else if (newPageTitle === "Login") {
-    contentDiv.innerHTML = "<p>Login form goes here.</p>";
-  }
-  if (newPageTitle === "Live") {
-    const setPumpButton = document.createElement("button");
-    setPumpButton.id = "setPumpButton";
-    setPumpButton.textContent = "Pumpe setzen";
-    setPumpButton.style.width = "100px";
-    setPumpButton.style.height = "50px";
-    contentDiv.appendChild(setPumpButton);
-    setPumpButton.addEventListener("click", function () {
-      setMarker(48.411328, 12.947491); // Add a marker at this location
-    });
-  }
-}
 
 function setMarker(lat: number, lng: number) {
   if (map) {

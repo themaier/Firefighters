@@ -5,12 +5,6 @@
     <link rel="icon" type="image/svg+xml" href="src/assets/water-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Pumpen</title>
-    <style>
-      #map {
-        height: 500px;
-        width: 40%;
-      }
-    </style>
   </head>
   <body>
     <header>
@@ -20,24 +14,39 @@
         <a href="#login" id="loginLink">Login</a>
       </nav>
     </header>
-    
-    
-    <h1 id="pageTitle">Hallo</h1>
-    
-    <div id="content">
-      <!-- Content will be loaded here -->
-    </div>
 
+    <!-- Live Page -->
     <div id="livePage" style="display:none;">
-      <!-- Content for Live page -->
+      <div id="map" style="width: 40%; height: 500px;"></div>
       <button id="setPumpButton" style="width: 100px; height: 50px;">Pumpe setzen</button>
     </div>
+
+    <!-- Plan Page -->
     <div id="planPage" style="display:none;">
-      <!-- Content for Plan page -->
+      <div id="map" style="width: 40%; height: 500px;"></div>
     </div>
-    <div id="loginPAge" style="display:none;">
-      <!-- Content for Login page -->
-      <p>Login form goes here.</p>
+
+    <!-- Login Page -->
+    <div id="loginPage" style="display:none;">
+      <form id="myForm">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required>
+        <br>
+    
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" min="0" max="100" required>
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        <br>
+    
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+    
+        <input type="submit" value="Submit">
+      </form>
     </div>
 
     <script type="module" src="src/tsc/main.ts"></script>
