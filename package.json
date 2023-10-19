@@ -21,9 +21,9 @@
     "@typescript-eslint/parser": "^6.8.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
-    "javascript-obfuscator": "^4.1.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
-    "vite-plugin-javascript-obfuscator": "^3.0.3"
+    "vite-plugin-javascript-obfuscator": "^3.0.3",
+    "vite-plugin-minify": "^1.5.2"
   }
 }
