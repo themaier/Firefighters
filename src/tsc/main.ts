@@ -105,6 +105,12 @@ function setMarker(lat: number, lng: number) {
   const marker = new google.maps.Marker({
     position: pos,
     map: map,
+    label: {
+      text: String(markers.length + 1),
+      color: "white",
+      fontSize: "16px",
+      fontWeight: "bold",
+    },
   });
   markers.push(marker);
   map.setCenter(pos);
