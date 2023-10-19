@@ -15,6 +15,7 @@ export default defineConfig({
         debugProtection: true,
       },
     }) : null,
+    // also minify html-file, JS-minification is automatically done
     isProduction ? ViteMinifyPlugin({}) : null
   ]
 });
