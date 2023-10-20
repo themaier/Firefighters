@@ -4,53 +4,65 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="src/assets/water-icon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" type="text/css" href="src/css/main.css">
+    <script type="module" src="src/tsc/main.ts"></script>
     <title>Pumpen</title>
   </head>
   <body>
     <header>
-      <nav>
-        <a href="#live" id="liveLink">Live</a>
+      <nav class="topnav">
+        <a href="#live" id="liveLink" class="active">Live</a>
         <a href="#plan" id="planLink">Plan</a>
-        <a href="#login" id="loginLink">Login</a>
+        <a href="#group" id="groupLink">Gruppe</a>
       </nav>
     </header>
 
     <!-- Live Page -->
-    <div id="livePage" style="display:none;">
-      <div id="map" style="width: 40%; height: 500px;"></div>
+    <div id="livePage" class="livePage" style="display:none;">
+      <div class="mapContainer">
+        <div id="map" class="map"></div>
+        <div id="mapCenterDot" class="mapCenterDot"></div>
+      </div>
       <button id="setPumpButton" style="width: 100px; height: 50px;">Pumpe setzen</button>
       <button id="deletePumpButton" style="width: 100px; height: 50px;">Pumpe löschen</button>
       <button id="getElevationButton" style="width: 100px; height: 50px;">Höhenmeter messen</button>
     </div>
 
     <!-- Plan Page -->
-    <div id="planPage" style="display:none;">
-      <div id="map" style="width: 40%; height: 500px;"></div>
+    <div id="planPage" class="planPage" style="display:none;">
+      <div class="mapContainer">
+        <div id="map" class="map"></div>
+        <div id="mapCenterDot" class="mapCenterDot"></div>
+      </div>
     </div>
 
-    <!-- Login Page -->
-    <div id="loginPage" style="display:none;">
-      <form id="myForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-    
-        <label for="age">Age:</label>
-        <input type="number" id="age" name="age" min="0" max="100" required>
-        <br>
-
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-        <br>
-    
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-    
-        <input type="submit" value="Submit">
-      </form>
+    <!-- group Page -->
+    <div id="groupPage" class="groupPage" style="display:none;">
+      <br>
+      <button id="loginBtn" class="login">Login</button>
+      <br>
+      <div class="modal-cont">
+        <div class="modal-box">
+          <span class="close">&times;</span>
+          <form action="" class="login-box">
+            <h1> Login Page </h1>
+            <label for="">Feuerwehr E-Mail</label>
+            <input type="text" class="name" required>
+            <label for="">Feuerwehr Passwort</label>
+            <input type="password" class="password" required>
+            <label for="">Einsatz Gruppe</label>
+            <input type="text" class="name" required>
+            <label for="">Vorname</label>
+            <input type="text" class="password" required>
+            <label for="">Nachname</label>
+            <input type="text" class="password" required>
+            <button class="login-button">Login</button>
+            <div class="close-forgot">
+              <button class="cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
-
-    <script type="module" src="src/tsc/main.ts"></script>
   </body>
 </html>
