@@ -11,8 +11,8 @@
   <body>
     <header>
       <nav class="topnav">
-        <a href="#live" id="liveLink" class="active">Live</a>
-        <a href="#plan" id="planLink">Plan</a>
+        <a href="#live" id="liveLink">Live</a>
+        <a href="#plan" id="planLink" class="active">Plan</a>
         <a href="#group" id="groupLink">Gruppe</a>
       </nav>
     </header>
@@ -23,14 +23,6 @@
         <div id="map" class="map"></div>
         <div id="mapCenterDot" class="mapCenterDot"></div>
       </div>
-      <br>
-      <div class="controllContainer">
-        <button id="setPumpButton" class="simpleButton">Pumpe setzen</button>
-        <button id="deletePumpButton" class="simpleButton">Pumpe löschen</button>
-        <button id="getElevationButton" class="simpleButton">Höhendifferenz<br>messen</button>
-        <div id="elevationTextContainer" class="elevationText">0m</div>
-      </div>
-      <div class="mapContainer"></div>
     </div>
 
     <!-- Plan Page -->
@@ -38,6 +30,13 @@
       <div class="mapContainer">
         <div id="map" class="map"></div>
         <div id="mapCenterDot" class="mapCenterDot"></div>
+      </div>
+      <br>
+      <div class="controllContainer">
+        <button id="setPumpButton" class="simpleButton">Pumpe setzen</button>
+        <button id="deletePumpButton" class="simpleButton">Pumpe löschen</button>
+        <button id="getElevationButton" class="simpleButton">Höhendifferenz<br>messen</button>
+        <div id="elevationTextContainer" class="elevationText">0m</div>
       </div>
     </div>
 

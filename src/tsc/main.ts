@@ -5,7 +5,7 @@ const apiKey = (import.meta as any).env.VITE_GMAP_API_KEY;
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname !== "/pumps") {
-    window.history.replaceState({}, "", "/pumps#live" + window.location.hash);
+    window.history.replaceState({}, "", "/pumps#plan" + window.location.hash);
   }
 
   const livePage = document.getElementById("livePage") as HTMLElement;
@@ -71,9 +71,9 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 window.addEventListener("load", function () {
-  // Automatically click the "liveLink" when the page loads
-  const liveLink = document.getElementById("liveLink") as HTMLElement;
-  liveLink.click();
+  // Automatically click the "planLink" when the page loads
+  const planLink = document.getElementById("planLink") as HTMLElement;
+  planLink.click();
 });
 
 function handleLivePage(livePage: HTMLElement) {
@@ -84,10 +84,25 @@ function handleLivePage(livePage: HTMLElement) {
   document.body.appendChild(script);
   (window as any).initMap = function () {
     const options = {
+      zoom: 11,
+      center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
+    };
+    map = new google.maps.Map(livePage.querySelector("#map")!, options);
+  };
+}
+
+function handlePlanPage(planPage: HTMLElement) {
+  planPage.style.display = "block";
+  const script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+  document.body.appendChild(script);
+  (window as any).initMap = function () {
+    const options = {
       zoom: 13,
       center: { lat: 48.411328, lng: 12.947491 },
     };
-    map = new google.maps.Map(livePage.querySelector("#map")!, options);
+    map = new google.maps.Map(planPage.querySelector("#map")!, options);
   };
 
   const setPumpButton = document.getElementById("setPumpButton") as HTMLElement;
@@ -113,21 +128,6 @@ function handleLivePage(livePage: HTMLElement) {
       textContainer.textContent = String(difference) + "m";
     });
   });
-}
-
-function handlePlanPage(planPage: HTMLElement) {
-  planPage.style.display = "block";
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
-  document.body.appendChild(script);
-  (window as any).initMap = function () {
-    const options = {
-      zoom: 11,
-      center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
-    };
-    map = new google.maps.Map(planPage.querySelector("#map")!, options);
-  };
 }
 
 function setMarker(lat: number, lng: number) {
