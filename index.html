@@ -23,9 +23,14 @@
         <div id="map" class="map"></div>
         <div id="mapCenterDot" class="mapCenterDot"></div>
       </div>
-      <button id="setPumpButton" style="width: 100px; height: 50px;">Pumpe setzen</button>
-      <button id="deletePumpButton" style="width: 100px; height: 50px;">Pumpe löschen</button>
-      <button id="getElevationButton" style="width: 100px; height: 50px;">Höhenmeter messen</button>
+      <br>
+      <div class="controllContainer">
+        <button id="setPumpButton" class="simpleButton">Pumpe setzen</button>
+        <button id="deletePumpButton" class="simpleButton">Pumpe löschen</button>
+        <button id="getElevationButton" class="simpleButton">Höhendifferenz<br>messen</button>
+        <div id="elevationTextContainer" class="elevationText">0m</div>
+      </div>
+      <div class="mapContainer"></div>
     </div>
 
     <!-- Plan Page -->

@@ -84,8 +84,8 @@ function handleLivePage(livePage: HTMLElement) {
   document.body.appendChild(script);
   (window as any).initMap = function () {
     const options = {
-      zoom: 11,
-      center: { lat: 48.411328, lng: 12.947491 }, // New York coordinates
+      zoom: 13,
+      center: { lat: 48.411328, lng: 12.947491 },
     };
     map = new google.maps.Map(livePage.querySelector("#map")!, options);
   };
@@ -96,23 +96,22 @@ function handleLivePage(livePage: HTMLElement) {
     setMarker(center.lat(), center.lng());
   });
 
-  const deletePumpButton = document.getElementById(
-    "deletePumpButton"
-  ) as HTMLElement;
+  const deletePumpButton = document.getElementById("deletePumpButton") as HTMLElement;
   deletePumpButton.addEventListener("click", function () {
     if (markers.length > 0) {
-      const lastMarker = markers[markers.length - 1];
+      const lastMarker = markers.pop().marker;
       lastMarker.setMap(null);
-      markers.pop();
-      // map.setCenter(markers[markers.length - 1].getPosition());
     }
   });
 
-  const getElevationButton = document.getElementById(
-    "getElevationButton"
-  ) as HTMLElement;
+  const getElevationButton = document.getElementById("getElevationButton") as HTMLElement;
   getElevationButton.addEventListener("click", function () {
-    //   setMarker(48.411328, 12.947491);
+    const textContainer = document.getElementById("elevationTextContainer") as HTMLElement;
+    const center: google.maps.LatLng = map.getCenter();
+    getElevation(center.lat(), center.lng()).then((elevation) => {
+      const difference = (elevation - markers[markers.length - 1].elevation).toFixed(1);
+      textContainer.textContent = String(difference) + "m";
+    });
   });
 }
 
@@ -146,6 +145,25 @@ function setMarker(lat: number, lng: number) {
       fontWeight: "bold",
     },
   });
-  markers.push(marker);
+  getElevation(lat, lng).then((elevation) => {
+    markers.push({ marker: marker, elevation: elevation });
+  });
   map.setCenter(pos);
+}
+
+async function getElevation(lat: number, lng: number) {
+  let elevation = 0;
+  try {
+    const response = await fetch("https://api.opentopodata.org/v1/eudem25m?locations=" + lat + "," + lng);
+    const data = await response.json();
+
+    if (data.results[0].elevation !== null) {
+      elevation = data.results[0].elevation;
+    } else {
+      alert("Elevation data is not available for these coordinates");
+    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
+  return elevation;
 }

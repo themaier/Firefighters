@@ -95,7 +95,7 @@ body {
 .mapContainer {
     position: relative;
     width: 100%;
-    height: 80%;
+    height: 75%;
     /* margin: 0;
     padding: 0; */
     /* margin: auto;
@@ -118,6 +118,37 @@ body {
     top: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
+}
+
+.controllContainer {
+    position: relative;
+    width: 100%;
+    height: 5%;
+    display: flex;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    justify-content: center;
+    align-items: center;
+}
+
+.simpleButton {
+    width: 100px;
+    height: 50px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    border-radius: 10px;
+    border: 2px solid #000000;
+    background-color: lightcoral;
+    vertical-align: top;
+    margin: 2;
+}
+
+.elevationText {
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: lightgrey;
+    text-align: center;
+    padding: 15px;
 }
 
 .modal-cont {
