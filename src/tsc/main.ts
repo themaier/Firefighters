@@ -92,6 +92,20 @@ function handleLivePage(livePage: HTMLElement) {
     };
     map = new google.maps.Map(livePage.querySelector("#map")!, options);
   };
+  console.log("Hello1.");
+  function success(position: GeolocationPosition) {
+    const latitude = position.coords.latitude;
+    const longitude = position.coords.longitude;
+
+    console.log("Latitude is :" + latitude + " Longitude is :" + longitude);
+  }
+
+  function error() {
+    console.log("Unable to retrieve your location");
+  }
+
+  navigator.geolocation.getCurrentPosition(success, error);
+  console.log("Hello Live.");
 }
 
 function handlePlanPage(planPage: HTMLElement) {
