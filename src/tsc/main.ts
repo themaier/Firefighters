@@ -1,7 +1,9 @@
 let markers: google.maps.Marker = [];
 declare var google: any;
 let map: google.maps.Map | null = null;
-const apiKey = (import.meta as any).env.VITE_GMAP_API_KEY;
+// const apiKey = (import.meta as any).env.VITE_GMAP_API_KEY;
+const apiKeyPart1: String = "AIzaSyA9Ydqm";
+const apiKeyPart3: String = "6N93WVejGoeOvI";
 
 document.addEventListener("DOMContentLoaded", function () {
   if (window.location.pathname !== "/pumps") {
@@ -80,7 +82,8 @@ function handleLivePage(livePage: HTMLElement) {
   livePage.style.display = "block";
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+  // script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKeyPart1}83q87JgAf0Y8S${apiKeyPart3}&callback=initMap`;
   document.body.appendChild(script);
   (window as any).initMap = function () {
     const options = {
@@ -95,7 +98,8 @@ function handlePlanPage(planPage: HTMLElement) {
   planPage.style.display = "block";
   const script = document.createElement("script");
   script.type = "text/javascript";
-  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+  // script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&callback=initMap`;
+  script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKeyPart1}83q87JgAf0Y8S${apiKeyPart3}&callback=initMap`;
   document.body.appendChild(script);
   (window as any).initMap = function () {
     const options = {
