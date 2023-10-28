@@ -5,7 +5,7 @@
   "main": "src/tsc/main.ts",
   "scripts": {
     "dev": "vite",
-    "build": "cross-env BUILD_ENV=development vite build",
+    "build": "vite build",
     "prod": "cross-env BUILD_ENV=production vite build",
     "serve": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
