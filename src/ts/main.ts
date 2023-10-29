@@ -215,4 +215,4 @@ async function getElevation(lat: number, lng: number) {
   return elevation;
 }
 
-module.exports = getDistanceInMeter;
+module.exports = { getDistanceInMeter, getElevation };
