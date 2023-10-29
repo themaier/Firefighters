@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+      - run: |
+          git config --global user.name "Your Name"
+          git config --global user.email "you@example.com"
       - uses: actions/setup-node@v3
       - uses: bahmutov/npm-install@v1
       - run: npm run build
