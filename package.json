@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Vanilla javascript project. npm, vite, apis, forms",
   "main": "src/tsc/main.ts",
+  "homepage": "https://themaier.github.io/Firefighters/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "prod": "cross-env BUILD_ENV=production vite build",
+    "deploy": "gh-pages -d dist",
     "serve": "vite preview",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "npx eslint ."
@@ -20,6 +22,7 @@
     "@typescript-eslint/parser": "^6.8.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.51.0",
+    "gh-pages": "^6.0.0",
     "typescript": "^5.2.2",
     "vite": "^4.5.0",
     "vite-plugin-javascript-obfuscator": "^3.0.3",
