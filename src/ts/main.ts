@@ -146,6 +146,20 @@ function handlePlanPage(planPage: HTMLElement) {
       textContainer.textContent = String(difference) + "m";
     });
   });
+  const getDistanceButton = document.getElementById("getDistanceButton") as HTMLElement;
+  getDistanceButton.addEventListener("click", function () {
+    const distanceTextContainer = document.getElementById("distanceTextContainer") as HTMLElement;
+    if (markers.length > 0) {
+      var marker = markers[markers.length - 1].marker;
+      var lat1 = marker.getPosition().lat();
+      var lng1 = marker.getPosition().lng();
+      const center: google.maps.LatLng = map.getCenter();
+      var distance = getDistanceInMeter(lat1, lng1, center.lat(), center.lng());
+      distanceTextContainer.textContent = String(distance) + "m";
+    } else {
+      distanceTextContainer.textContent = "0m";
+    }
+  });
 }
 
 function setMarker(lat: number, lng: number) {
@@ -169,6 +183,21 @@ function setMarker(lat: number, lng: number) {
   map.setCenter(pos);
 }
 
+function getDistanceInMeter(lat1: number, lng1: number, lat2: number, lng2: number) {
+  function deg2rad(deg: number) {
+    return deg * (Math.PI / 180);
+  }
+  var R = 6371; // Radius of the earth in km
+  var dLat = deg2rad(lat2 - lat1); // deg2rad below
+  var dLon = deg2rad(lng2 - lng1);
+  var a =
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  var d = R * c; // Distance in km
+  return (d * 1000).toFixed(1);
+}
+
 async function getElevation(lat: number, lng: number) {
   let elevation = 0;
   try {
@@ -185,3 +214,5 @@ async function getElevation(lat: number, lng: number) {
   }
   return elevation;
 }
+
+module.exports = getDistanceInMeter;
