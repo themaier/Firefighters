@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/Firefighters/assets/water-icon-50fda5aa.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    
+    <title>Pumpen</title>
+    <script type="module" crossorigin src="/Firefighters/assets/index-5285a6aa.js"></script>
+    <link rel="stylesheet" href="/Firefighters/assets/index-1fb6aeac.css">
+  </head>
+  <body>
+    <header>
+      <nav class="topnav">
+        <a href="#live" id="liveLink">Live</a>
+        <a href="#plan" id="planLink" class="active">Plan</a>
+        <a href="#group" id="groupLink">Gruppe</a>
+      </nav>
+    </header>
+
+    <!-- Live Page -->
+    <div id="livePage" class="livePage" style="display:none;">
+      <div class="mapContainer">
+        <div id="map" class="map"></div>
+        <div id="mapCenterDot" class="mapCenterDot"></div>
+      </div>
+    </div>
+
+    <!-- Plan Page -->
+    <div id="planPage" class="planPage" style="display:none;">
+      <div class="mapContainer">
+        <div id="map" class="map"></div>
+        <div id="mapCenterDot" class="mapCenterDot"></div>
+      </div>
+      <br>
+      <div class="controllContainer">
+        <button id="setPumpButton" class="simpleButton">Pumpe setzen</button>
+        <button id="deletePumpButton" class="simpleButton">Pumpe löschen</button>
+        <button id="getElevationButton" class="simpleButton">Höhendifferenz<br>messen</button>
+        <div id="elevationTextContainer" class="elevationText">0m</div>
+      </div>
+    </div>
+
+    <!-- group Page -->
+    <div id="groupPage" class="groupPage" style="display:none;">
+      <br>
+      <button id="loginBtn" class="login">Login</button>
+      <br>
+      <div class="modal-cont">
+        <div class="modal-box">
+          <span class="close">&times;</span>
+          <form action="" class="login-box">
+            <h1> Login Page </h1>
+            <label for="">Feuerwehr E-Mail</label>
+            <input type="text" class="name" required>
+            <label for="">Feuerwehr Passwort</label>
+            <input type="password" class="password" required>
+            <label for="">Einsatz Gruppe</label>
+            <input type="text" class="name" required>
+            <label for="">Vorname</label>
+            <input type="text" class="password" required>
+            <label for="">Nachname</label>
+            <input type="text" class="password" required>
+            <button class="login-button">Login</button>
+            <div class="close-forgot">
+              <button class="cancel">Cancel</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
