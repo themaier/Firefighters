@@ -5,10 +5,7 @@ import { ViteMinifyPlugin } from 'vite-plugin-minify'
 const isProduction = process.env.BUILD_ENV === 'production';
 
 export default defineConfig({
-  // base: '/Firefighters/',
-  // build: {
-  //   outDir: 'dist',
-  // },
+  base: '/Firefighters/',
   plugins: [
     isProduction ? obfuscatorPlugin({
       options: {
