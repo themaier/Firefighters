@@ -167,17 +167,31 @@ function setMarker(lat: number, lng: number) {
     lat: lat,
     lng: lng,
   };
-  const marker = new google.maps.Marker({
-    position: pos,
-    map: map,
-    label: {
-      text: String(markers.length + 1),
-      color: "white",
-      fontSize: "16px",
-      fontWeight: "bold",
-    },
-  });
   getElevation(lat, lng).then((elevation) => {
+    let text;
+    if (markers.length > 0) {
+      var marker1 = markers[markers.length - 1].marker;
+      var lat11 = marker1.getPosition().lat();
+      var lng11 = marker1.getPosition().lng();
+      const center: google.maps.LatLng = map.getCenter();
+      var distance1 = getDistanceInMeter(lat11, lng11, center.lat(), center.lng());
+      var elevationDifference = (elevation - markers[markers.length - 1].elevation).toFixed(1);
+      text = "H: " + String(elevationDifference) + "m | E: " + String(distance1) + "m";
+    } else {
+      text = "1";
+    }
+
+    const marker = new google.maps.Marker({
+      position: pos,
+      map: map,
+      label: {
+        // text: String(markers.length + 1),
+        text: text,
+        color: "black",
+        fontSize: "16px",
+        fontWeight: "bold",
+      },
+    });
     markers.push({ marker: marker, elevation: elevation });
   });
   map.setCenter(pos);
@@ -215,4 +229,4 @@ async function getElevation(lat: number, lng: number) {
   return elevation;
 }
 
-module.exports = getDistanceInMeter;
+module.exports = { getDistanceInMeter, getElevation };

@@ -6,8 +6,8 @@
   "homepage": "https://themaier.github.io/Firefighters/",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
     "prod": "cross-env BUILD_ENV=production vite build",
+    "build": "vite build",
     "deploy": "gh-pages -d dist",
     "serve": "vite preview",
     "test": "jest --verbose",
