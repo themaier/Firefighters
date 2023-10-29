@@ -1,0 +1,40 @@
+name: deploy pipeline
+
+on:
+  push:
+    branches:
+      - main
+
+# jobs:
+#   build:
+#     name: gh-pages
+#     runs-on: ubuntu-latest
+
+#     steps:
+#       - uses: actions/checkout@v3
+#       - run: |
+#           git config --global user.name "Your Name"
+#           git config --global user.email "you@example.com"
+#       - uses: actions/setup-node@v3
+#       - uses: bahmutov/npm-install@v1
+#       - run: npm run build
+#       - run: npm run deploy
+
+jobs:
+  build-and-deploy:
+    name: gh-pages
+    concurrency: ci-${{ github.ref }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎️
+        uses: actions/checkout@v3
+
+      - name: Install and Build
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          folder: dist
