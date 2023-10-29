@@ -6,8 +6,8 @@ const apiKeyPart1: String = "AIzaSyA9Ydqm";
 const apiKeyPart3: String = "6N93WVejGoeOvI";
 
 document.addEventListener("DOMContentLoaded", function () {
-  if (window.location.pathname !== "/pumps") {
-    window.history.replaceState({}, "", "/pumps#plan" + window.location.hash);
+  if (window.location.pathname !== "/Firefighters") {
+    window.history.replaceState({}, "", "/Firefighters#plan" + window.location.hash);
   }
 
   const livePage = document.getElementById("livePage") as HTMLElement;
