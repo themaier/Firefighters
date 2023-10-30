@@ -63,9 +63,10 @@ document.addEventListener("DOMContentLoaded", function () {
   var numberInput = document.getElementById("numberInput") as HTMLInputElement;
   var loginBtnModal = document.getElementById("loginBtnModal") as HTMLInputElement;
 
-  loginBtnModal.onclick = function () {
+  loginBtnModal.onclick = function (event) {
     const numberValue = parseInt(numberInput.value, 10);
     if (numberValue < 0 || numberValue > 1000 || !Number.isInteger(numberValue)) {
+      event.preventDefault();
       numberInput.classList.add("error");
       alert("Please enter a positive integer between 0 and 1000");
       return; // Stop further execution
