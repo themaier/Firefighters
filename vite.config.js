@@ -6,6 +6,10 @@ const isProduction = process.env.BUILD_ENV === 'production';
 
 export default defineConfig({
   base: '/Firefighters/',
+  root: 'src',
+  build: {
+    outDir: '../dist'
+  },
   plugins: [
     isProduction ? obfuscatorPlugin({
       options: {
